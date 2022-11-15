@@ -2,43 +2,42 @@ import { AnimatePresence } from "framer-motion";
 import { IBoards } from "../../../../commons/types/generated/types";
 import * as S from "./List.styles";
 import ListItem from "./ListItem";
-import { Select } from "antd";
-import { DefaultOptionType } from "antd/lib/select";
+import { Select, Cascader } from "antd";
 import Button01 from "../../../common/buttons/01";
 import { stylePrimaryColor } from "../../../../commons/styles/globalStyles";
-
-interface IMainListProps {
-  handleChangeLocation:
-    | ((value: any, option: DefaultOptionType | DefaultOptionType[]) => void)
-    | undefined;
-  options: DefaultOptionType[] | undefined;
-  filteredLocation: string[];
-  data?: any[];
-  onClickListItem: (id: string) => () => void;
-  onClickToMap: () => void;
-}
+import { IMainListProps } from "./List.types";
 
 const MainListUI = (props: IMainListProps) => {
   return (
     <S.Wrapper>
       <S.OptionBox>
         <S.LocationOptionBox>
-          <Select
-            mode="tags"
-            style={{ width: "100%" }}
-            // placeholder="Tags Mode"
+          <Cascader
+            options={props.locationOptions}
             onChange={props.handleChangeLocation}
-            options={props.options}
+            placeholder="지역 검색"
+            // onClick={props.loadDistricts}
           />
         </S.LocationOptionBox>
-        <S.GenreOptionBox>장르별</S.GenreOptionBox>
+        <S.GenreOptionBox>
+          <Select
+            mode="multiple"
+            allowClear
+            style={{ width: "100%" }}
+            placeholder="장르 검색"
+            onChange={props.handleChangeGenre}
+            options={props.options}
+          />
+        </S.GenreOptionBox>
       </S.OptionBox>
       <S.ListBox>
         <AnimatePresence>
-          {props.filteredLocation.length
-            ? props.data
-                ?.filter((board: IBoards) =>
-                  props.filteredLocation?.includes(board.category.name)
+          {props.filteredGenre.length || props.filteredLocation
+            ? props.data?.fetchBoards
+                ?.filter(
+                  (board: IBoards) =>
+                    props.filteredGenre?.includes(board.category.name) ||
+                    board.boardAddress.address === props.filteredLocation
                 )
                 .map((board: IBoards) => (
                   <ListItem
@@ -47,7 +46,7 @@ const MainListUI = (props: IMainListProps) => {
                     onClickListItem={props.onClickListItem}
                   />
                 ))
-            : props.data?.map((board: IBoards) => (
+            : props.data?.fetchBoards.map((board: IBoards) => (
                 <ListItem
                   key={board.id}
                   board={board}
@@ -65,10 +64,11 @@ const MainListUI = (props: IMainListProps) => {
           zIndex: "2",
           backgroundColor: `${stylePrimaryColor}`,
           color: "white",
+          boxShadow: "3px 5px 10px 3px rgba(0,0,0,0.5)",
         }}
         onClick={props.onClickToMap}
       >
-        지도로 가기
+        주변 버스킹 확인하기
       </Button01>
     </S.Wrapper>
   );

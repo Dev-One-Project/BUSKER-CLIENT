@@ -1,4 +1,4 @@
-import { MouseEvent } from "react";
+import { ChangeEvent, MouseEvent } from "react";
 import { UseFormRegister } from "react-hook-form";
 
 export interface IArtistSignupPageWriteUI {
@@ -19,8 +19,8 @@ export interface IArtistSignupPageWriteUI {
   isEdit: boolean;
   handleSubmit: any;
   formState: any;
-  // imgUrl: string;
-  // onChangeFile: (event: ChangeEvent<HTMLInputElement>) => void;
+  imgUrl: string;
+  onCreateArtistImage: (event: ChangeEvent<HTMLInputElement>) => void;
   register: UseFormRegister<IFormData>;
 }
 
@@ -29,9 +29,9 @@ export interface IArtistSignupPageWrite {
 }
 
 export interface IFormData {
-  artist_image: string;
   active_name: string;
-  catagory: string;
+  category: string;
   description: string;
   promotion_url: string;
+  artist_image: string;
 }

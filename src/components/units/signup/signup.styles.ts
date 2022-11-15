@@ -1,9 +1,13 @@
 import styled from "@emotion/styled";
-import { stylePrimaryColor } from "../../../commons/styles/globalStyles";
+import {
+  breakPoints,
+  stylePrimaryColor,
+} from "../../../commons/styles/globalStyles";
 
 export const MainWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 export const SignupTopWrapper = styled.div`
@@ -14,11 +18,15 @@ export const SignupTopWrapper = styled.div`
   border-bottom: 2px solid gray;
   margin-bottom: 2rem;
   padding: 2rem 0;
+  @media ${breakPoints.mobile} {
+    width: 250px;
+  }
 `;
 
 export const SignupInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 export const SignupWrapper = styled.form`
@@ -37,6 +45,14 @@ export const BtnWrapper = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
+  @media ${breakPoints.mobile} {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    button {
+      width: 100%;
+    }
+  }
 `;
 
 export const BtnStyle = styled.button`

@@ -12,15 +12,14 @@ export const globalStyles = css`
 
   .wrap {
     position: absolute;
-    left: 0;
+    left: 20px;
     bottom: 40px;
-    width: 288px;
+    width: 250px;
     height: 132px;
     margin-left: -144px;
     text-align: left;
     overflow: hidden;
     font-size: 12px;
-    font-family: "Malgun Gothic", dotum, "돋움", sans-serif;
     line-height: 1.5;
   }
   .wrap * {
@@ -28,7 +27,7 @@ export const globalStyles = css`
     margin: 0;
   }
   .wrap .info {
-    width: 286px;
+    width: 250px;
     height: 120px;
     border-radius: 5px;
     border-bottom: 2px solid #ccc;
@@ -36,26 +35,30 @@ export const globalStyles = css`
     overflow: hidden;
     background: #fff;
   }
-  .wrap .info:nth-child(1) {
+  .wrap .info:nth-of-type(1) {
     border: 0;
     box-shadow: 0px 1px 2px #888;
   }
   .info .title {
-    padding: 5px 0 0 10px;
+    padding: 2px 0 0 10px;
     height: 30px;
-    background: #eee;
+    background: #9900ff;
     border-bottom: 1px solid #ddd;
     font-size: 18px;
     font-weight: bold;
+    color: white;
   }
   .info .close {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 8px;
+    right: 8px;
     color: #888;
     width: 17px;
     height: 17px;
-    background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png");
+    & * {
+      font-size: 1.5rem;
+      color: white;
+    }
   }
   .info .close:hover {
     cursor: pointer;
@@ -83,11 +86,12 @@ export const globalStyles = css`
     position: absolute;
     top: 6px;
     left: 5px;
-    width: 73px;
-    height: 71px;
+    width: 75px;
+    height: 75px;
     border: 1px solid #ddd;
     color: #888;
     overflow: hidden;
+    border: none;
   }
   .info:after {
     content: "";
@@ -100,12 +104,43 @@ export const globalStyles = css`
     background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png");
   }
   .info .link {
-    color: #5085bb;
+    color: #9900ff;
+  }
+
+  .info .link:hover {
+    cursor: pointer;
+  }
+
+  main {
+    display: flex;
+  }
+
+  aside {
+    background-color: #c4a8ff;
+    width: 18.75rem;
+    height: 100vh;
+  }
+
+  .container {
+    margin: 4.5rem 1.4rem;
+  }
+
+  .btn-container {
+    position: fixed;
+  }
+
+  .container a {
+    color: #f9fafb;
+    text-decoration: none;
+    font-size: 1.75rem;
+    font-weight: 600;
+    display: block;
+    margin: 20px;
   }
 `;
 
-export const stylePrimaryColor = "#7D2BBE";
-
+export const stylePrimaryColor = "#9900FF";
+export const styleSecondColor = "#6600FF";
 export const breakPoints = {
   desktop: "(min-width: 992px)",
   tablet: "(min-width: 768px) and (max-width: 991px)",

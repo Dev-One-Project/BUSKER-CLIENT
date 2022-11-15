@@ -9,7 +9,7 @@ export const HomeLink = styled.a`
   width: 100%;
   height: 100%;
   font-size: 3rem;
-  color: #000;
+
   padding: 1em;
   letter-spacing: 5px;
   cursor: pointer;
@@ -26,7 +26,12 @@ const Logo = () => {
   };
   return (
     <LogoIcon>
-      <HomeLink onClick={onClickLogo}>BUSKER</HomeLink>
+      <HomeLink
+        style={{ color: router.asPath === "/" ? "white" : "black" }}
+        onClick={onClickLogo}
+      >
+        BUSKER
+      </HomeLink>
     </LogoIcon>
   );
 };

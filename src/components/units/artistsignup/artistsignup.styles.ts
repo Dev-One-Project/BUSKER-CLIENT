@@ -2,7 +2,10 @@ import styled from "@emotion/styled";
 import { Modal } from "antd";
 import DaumPostcodeEmbed from "react-daum-postcode";
 import "antd/dist/antd.css";
-import { stylePrimaryColor } from "../../../commons/styles/globalStyles";
+import {
+  breakPoints,
+  stylePrimaryColor,
+} from "../../../commons/styles/globalStyles";
 
 export const MainWrapper = styled.form`
   width: 100%;
@@ -12,47 +15,66 @@ export const MainWrapper = styled.form`
 `;
 
 export const ContentsWrapper = styled.div`
-  width: 50%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding: 0 30px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  @media ${breakPoints.mobile} {
+    width: 280px;
+  }
 `;
 
 export const ContentsTopWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 3rem 0;
+  width: 100%;
 `;
 
 export const ArtistProfileWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  max-width: 300px;
+  width: 100%;
 `;
 
 export const PlaceGenreWrapper = styled.div`
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
+  @media ${breakPoints.mobile} {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+  }
 `;
 
 export const ArtistPlaceWrapper = styled.div`
-  display: flex;
   gap: 5rem;
-  align-items: flex-end;
+  width: 100%;
+  @media ${breakPoints.mobile} {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    justify-content: center;
+  }
 `;
 
 export const MainPlaceGenreWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 100%;
   input {
-    width: 100%;
+    width: 200px;
+    margin-right: 20px;
   }
   button {
-    height: 3rem;
-    width: 30%;
+    height: 50px;
+    width: 80px;
     border-radius: 1.5rem;
     font-weight: 600;
+    aspect-ratio: 1/1;
     cursor: pointer;
     color: ${stylePrimaryColor};
     background: none;
@@ -62,6 +84,10 @@ export const MainPlaceGenreWrapper = styled.div`
       color: white;
     }
   }
+  @media ${breakPoints.mobile} {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const RemarksLinkWrapper = styled.div`
@@ -70,9 +96,21 @@ export const RemarksLinkWrapper = styled.div`
   width: 100%;
 `;
 
+export const AddressWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  @media ${breakPoints.mobile} {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+  }
+`;
+
 export const RemarksInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 export const TextStyle = styled.div`
@@ -117,11 +155,19 @@ export const AddTeamInputWrapper = styled.div`
   margin: 20px 0;
   padding: 10px;
   width: 80%;
+  max-width: 600px;
+  @media ${breakPoints.mobile} {
+    display: flex;
+    flex-direction: column;
+    input {
+      width: 100%;
+    }
+  }
 `;
 
 export const AddBtn = styled.button`
-  height: 5rem;
-  width: 8%;
+  height: 50px;
+  width: 50px;
   border-radius: 1.5rem;
   font-weight: 600;
   font-size: 1.7rem;
@@ -133,14 +179,14 @@ export const AddBtn = styled.button`
 
 export const ImgBtn = styled.label`
   display: inline-block;
-  width: 36%;
+  width: 80px;
   margin-right: 24px;
   background-color: #ccc;
-  border-radius: 100px;
   cursor: pointer;
   text-align: center;
   line-height: 7.6rem;
   font-size: 2.5rem;
+  aspect-ratio: 1/1;
 `;
 
 export const FileInput = styled.input`
@@ -148,13 +194,17 @@ export const FileInput = styled.input`
 `;
 
 export const MemberImgBtn = styled.label`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   text-align: center;
-  line-height: 7.6rem;
   font-size: 2.5rem;
   border-radius: 100px;
   background-color: #ccc;
-  width: 100px;
+  width: 50px;
+  height: 50px;
+  aspect-ratio: 1/1;
 `;
 
 export const SubmitBtn = styled.button`

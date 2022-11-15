@@ -26,9 +26,8 @@ const PasswordChangePageWriteUI = ({
           </S.InputBtnWrapper>
           <S.InputBtnWrapper>
             <Input01
-              type="text"
+              type="password"
               placeholder="새 비밀번호를 다시 입력해주세요"
-              register={register("passwordConfirm")}
             />
           </S.InputBtnWrapper>
           <S.ErrorStyle>

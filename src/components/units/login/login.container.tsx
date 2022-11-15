@@ -10,9 +10,13 @@ import {
   IMutation,
   IMutationLoginArgs,
 } from "../../../commons/types/generated/types";
+import { useRecoilState } from "recoil";
+import { accessTokenState } from "../../../commons/store";
 
 const LoginPageWrite = () => {
   const router = useRouter();
+  const [, setAccessToken] = useRecoilState(accessTokenState);
+
   const [login] = useMutation<Pick<IMutation, "login">, IMutationLoginArgs>(
     LOGIN
   );
@@ -31,13 +35,21 @@ const LoginPageWrite = () => {
   };
 
   const onClickLogin = async (data: IFormData) => {
-    await login({
-      variables: {
-        email: data.email,
-        password: data.password,
-      },
-    });
-    void router.push("/");
+    try {
+      const result = await login({
+        variables: {
+          email: data.email,
+          password: data.password,
+        },
+      });
+      const accessToken = result.data?.login;
+      setAccessToken(String(accessToken));
+      await router.push("/main/list");
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(error);
+      }
+    }
   };
 
   return (

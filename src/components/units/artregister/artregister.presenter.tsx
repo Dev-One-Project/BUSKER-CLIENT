@@ -140,14 +140,16 @@ const ArtRegisterPageWriteUI = ({
               </S.AddressSearchBtn>
             </S.AddressSearchWrapper>
             <S.ErrorMsg>{formState.errors.address?.message}</S.ErrorMsg>
-            <S.KakaoWrapper>
-              <KakaoMap
-                position={userPosition}
-                address={address}
-                isMap={false}
-                setValue={setValue}
-              />
-            </S.KakaoWrapper>
+            {address && (
+              <S.KakaoWrapper>
+                <KakaoMap
+                  position={userPosition}
+                  address={address}
+                  isMap={false}
+                  setValue={setValue}
+                />
+              </S.KakaoWrapper>
+            )}
           </S.AddressWrapper>
           <S.CategoryBtnStyle>등록하기</S.CategoryBtnStyle>
         </S.ContentsWrapper>

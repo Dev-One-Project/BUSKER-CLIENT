@@ -6,6 +6,8 @@ import { globalStyles } from "../src/commons/styles/globalStyles";
 import Layout from "../src/components/common/layout";
 import Script from "next/script";
 import "antd/dist/antd.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

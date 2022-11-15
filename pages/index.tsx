@@ -3,13 +3,28 @@ import "aos/dist/aos.css";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { deviceState, userPositionState } from "../src/commons/store";
-import { breakPoints } from "../src/commons/styles/globalStyles";
+import {
+  deviceState,
+  // districtDataState,
+  userPositionState,
+} from "../src/commons/store";
 import Head from "next/script";
-import AOS from "aos";
+import { FETCH_USER } from "../src/components/units/artistsignup/ArtistSignup.Quries";
+import { useQuery } from "@apollo/client";
+import { IQuery } from "../src/commons/types/generated/types";
+// import { DISTRICT_LIST } from "../src/components/units/main/list/List.queries";
 
 export default function Home() {
   const router = useRouter();
+  const { data } = useQuery<Pick<IQuery, "fetchUser">>(FETCH_USER);
+
+  // const [districtData, setDistrictData] = useRecoilState(districtDataState);
+  // const { data: districtList } =
+  //   useQuery<Pick<IQuery, "districtList">>(DISTRICT_LIST);
+
+  // useEffect(() => {
+  //   setDistrictData(districtList ?? {});
+  // }, [districtList]);
   const [isMobile, setIsMobile] = useRecoilState(deviceState);
   const [userPosition, setUserPosition] = useRecoilState(userPositionState);
   useEffect(() => {
@@ -24,10 +39,10 @@ export default function Home() {
         navigator.userAgent
       )
     );
-    AOS.init();
   }, []);
-  console.log(userPosition);
+  console.log("현재 좌표:", userPosition);
   console.log(isMobile ? "데탑아님" : "데탑임");
+  console.log(data ? "로그인 상태" : "로그인 안된 상태");
   return (
     <>
       <Head>
@@ -35,17 +50,24 @@ export default function Home() {
       </Head>
       <Wrapper>
         <VideoBox>
-          <Video src="/streetDance.mp4" autoPlay muted loop></Video>
+          <Video
+            src="/streetDance.mp4"
+            autoPlay
+            muted
+            loop
+            preload="auto"
+            playsInline
+          ></Video>
         </VideoBox>
         <button onClick={async () => await router.push("/map")}>
           근처의 버스킹 확인하기
         </button>
         <div style={{ width: "100%", height: "500px" }}>
-          <div data-aos="fade-up" className="box">
-            <h2 className="title">fade-up</h2>
+          <div data-aos="fade-left" className="box">
+            <h2 className="title">fade-left</h2>
           </div>
-          <div data-aos="fade-down" className="box">
-            <h2 className="title">fade-down</h2>
+          <div data-aos="fade-right" className="box">
+            <h2 className="title">fade-right</h2>
           </div>
         </div>
       </Wrapper>
@@ -56,9 +78,6 @@ export default function Home() {
 export const Wrapper = styled.div`
   position: relative;
   padding-top: 100vh;
-  @media ${breakPoints.mobile} {
-    padding-top: 50vh;
-  }
 `;
 
 export const VideoBox = styled.div`
@@ -67,13 +86,8 @@ export const VideoBox = styled.div`
   position: absolute;
   top: 0;
   bottom: 0;
-  overflow: hidden;
   margin: 0;
-  @media ${breakPoints.mobile} {
-    height: 50vh;
-    overflow-x: visible;
-    overflow-y: hidden;
-  }
+  overflow: hidden;
 `;
 
 export const Video = styled.video`
@@ -87,7 +101,5 @@ export const Video = styled.video`
   height: auto;
   transform: translate(-50%, -50%);
   filter: brightness(50%);
-  @media ${breakPoints.mobile} {
-    transform: translate(-60%, -50%);
-  }
+  z-index: -1;
 `;

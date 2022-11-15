@@ -8,7 +8,6 @@ const PasswordResetPageWriteUI = ({
   handleSubmit,
   onClickReset,
   onClickConfirm,
-  onClickMessageConfirm,
   formState,
 }: IPasswordResetPageWriteUI) => {
   return (
@@ -20,25 +19,25 @@ const PasswordResetPageWriteUI = ({
         </div>
         <S.PasswordChangeWrapper>
           <S.InputBtnWrapper>
-            <Input01
-              type="text"
-              placeholder="이메일을 입력해주세요"
-              register={register("email")}
-            />
-            <S.ErrorStyle>{formState.errors.email?.message}</S.ErrorStyle>
+            <S.InputErrorWrapper>
+              <Input01
+                type="text"
+                placeholder="이메일을 입력해주세요"
+                register={register("email")}
+              />
+            </S.InputErrorWrapper>
             <S.ConfirmBtn type="button" onClick={onClickConfirm}>
               인증하기
             </S.ConfirmBtn>
           </S.InputBtnWrapper>
+          <S.ErrorStyle>{formState.errors.email?.message}</S.ErrorStyle>
+
           <S.InputBtnWrapper>
             <Input01
               type="text"
               placeholder="인증번호를 입력해주세요"
-              register={register("confirm")}
+              register={register("authNumber")}
             />
-            <S.ConfirmBtn type="button" onClick={onClickMessageConfirm}>
-              인증확인
-            </S.ConfirmBtn>
           </S.InputBtnWrapper>
           <S.BtnWrapper>
             <S.Reset>비밀번호 초기화</S.Reset>

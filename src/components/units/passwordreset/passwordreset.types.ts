@@ -4,13 +4,12 @@ export interface IPasswordResetPageWriteUI {
   onClickMoveBack: () => void;
   handleSubmit: any;
   register: UseFormRegister<IFormData>;
-  onClickReset: () => void;
+  onClickReset: (data: IFormData) => void;
   onClickConfirm: () => void;
-  onClickMessageConfirm: () => void;
   formState: any;
 }
 
 export interface IFormData {
   email: string;
-  confirm: string;
+  authNumber: string;
 }

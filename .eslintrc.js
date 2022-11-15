@@ -19,4 +19,9 @@ module.exports = {
     "@typescript-eslint/triple-slash-reference": "off",
     "no-useless-escape": "off",
   },
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
 };

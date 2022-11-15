@@ -7,16 +7,16 @@ import { ArtRegisterYup } from "./artregister.schema";
 import type { DatePickerProps, RangePickerProps } from "antd/es/date-picker";
 import { IFormData } from "./artregister.types";
 import { Address } from "react-daum-postcode";
-// import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 // // import { UPLOAD_FILE } from "./ArtRegister.Quries";
-// import {
-//   IMutation,
-//   IMutationCreateBoardsArgs,
-//   IQuery,
-//   IQueryFetchArtistArgs,
-//   // IMutationUploadFileArgs,
-// } from "../../../commons/types/generated/types";
-// import { CREATE_BOARD, FETCH_ARTIST } from "./ArtRegister.Quries";
+import {
+  IMutation,
+  IMutationCreateBoardsArgs,
+  // IQuery,
+  // IQueryFetchArtistArgs,
+  // IMutationUploadFileArgs,
+} from "../../../commons/types/generated/types";
+import { CREATE_BOARD } from "./ArtRegister.Quries";
 
 const ArtRegisterPageWrite = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,10 +26,10 @@ const ArtRegisterPageWrite = () => {
   const [endTime, setEndTime] = useState("");
   // const [imgUrl, setImgUrl] = useState([]);
 
-  // const [createBoards] = useMutation<
-  //   Pick<IMutation, "createBoards">,
-  //   IMutationCreateBoardsArgs
-  // >(CREATE_BOARD);
+  const [createBoards] = useMutation<
+    Pick<IMutation, "createBoards">,
+    IMutationCreateBoardsArgs
+  >(CREATE_BOARD);
 
   // const { data: ArtistData } = useQuery<
   //   Pick<IQuery, "fetchArtist">,
@@ -96,23 +96,21 @@ const ArtRegisterPageWrite = () => {
   //   };
 
   const onClickRegister = async (data: IFormData) => {
-    console.log(data);
-    // await createBoards({
-    //   variables: {
-    //     createBoardInput: {
-    //       contents: data.contents,
-    //       artist: String(ArtistData?.fetchArtist.active_name),
-    //       category: data.genre,
-    //       start_time: startTime,
-    //       end_time: endTime,
-    //       boardAddressInput: {
-    //         address,
-    //         lat: Number(data.boardAddressInput.lat),
-    //         lng: Number(data.boardAddressInput.lng),
-    //       },
-    //     },
-    //   },
-    // });
+    await createBoards({
+      variables: {
+        createBoardInput: {
+          contents: data.contents,
+          category: data.genre,
+          start_time: data.start_time,
+          end_time: data.end_time,
+          boardAddressInput: {
+            address,
+            lat: Number(data.boardAddressInput.lat),
+            lng: Number(data.boardAddressInput.lng),
+          },
+        },
+      },
+    });
   };
 
   return (

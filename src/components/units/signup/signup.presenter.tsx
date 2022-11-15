@@ -31,7 +31,6 @@ const SignupPageWriteUI = ({
               <Input01
                 type="password"
                 placeholder="비밀번호를 다시 입력해주세요"
-                register={register("passwordConfirm")}
               />
               <S.ErrorStyle>
                 {formState.errors.passwordConfirm?.message}

@@ -22,13 +22,13 @@ const ArtistSignupPageWriteUI = ({
   handleChange,
   options,
   genre,
-}: // onChangeFile,
-// imgUrl,
-IArtistSignupPageWriteUI) => {
+  onCreateArtistImage,
+  imgUrl,
+}: IArtistSignupPageWriteUI) => {
   return (
     <>
       {isOpen && (
-        <S.AddressModal visible={true} onCancel={onClickHandleCancel}>
+        <S.AddressModal open={true} onCancel={onClickHandleCancel}>
           <S.AddressSearchInput onComplete={onCompleteAddressSearch} />
         </S.AddressModal>
       )}
@@ -41,11 +41,13 @@ IArtistSignupPageWriteUI) => {
           <S.ContentsTopWrapper>
             <S.ArtistPlaceWrapper>
               <S.ArtistProfileWrapper>
-                {/* {imgUrl ? (
+                {imgUrl ? (
                   <>
                     <S.ImgBtn
                       style={{
-                        backgroundImage: `url(https://storage.googleapis.com/${imgUrl})`,
+                        backgroundImage: `url(https://storage.googleapis.com/${String(
+                          imgUrl
+                        )})`,
                         backgroundColor: "#fff",
                         backgroundSize: "cover",
                       }}
@@ -55,7 +57,7 @@ IArtistSignupPageWriteUI) => {
                       <S.FileInput
                         type="file"
                         id={"file"}
-                        onChange={onChangeFile}
+                        onChange={onCreateArtistImage}
                       />
                     </S.ImgBtn>
                   </>
@@ -63,36 +65,33 @@ IArtistSignupPageWriteUI) => {
                   <>
                     <S.ImgBtn>
                       +
-                      <S.FileInput onChange={onChangeFile} type="file" />
+                      <S.FileInput onChange={onCreateArtistImage} type="file" />
                     </S.ImgBtn>
                   </>
-                )} */}
-
+                )}
                 <S.TextStyle>아티스트 이름(팀명)</S.TextStyle>
-                <div>
-                  <Input01 type="text" register={register("active_name")} />
-                </div>
-                <S.ErrorMsg>{formState.errors.name?.message}</S.ErrorMsg>
+                <Input01 type="text" register={register("active_name")} />
+                <S.ErrorMsg>{formState.errors.active_name?.message}</S.ErrorMsg>
               </S.ArtistProfileWrapper>
               <S.PlaceGenreWrapper>
                 <S.MainPlaceGenreWrapper>
                   <S.TextStyle>공연 주장소</S.TextStyle>
-                  <button onClick={onClickSearchAddress} type="button">
-                    주소찾기
-                  </button>
-                  <Input01 type="text" readOnly={true} value={address} />
-                  <S.ErrorMsg>{formState.errors.address?.message}</S.ErrorMsg>
+                  <S.AddressWrapper>
+                    <Input01 type="text" readOnly={true} value={address} />
+                    <button onClick={onClickSearchAddress} type="button">
+                      주소찾기
+                    </button>
+                  </S.AddressWrapper>
                 </S.MainPlaceGenreWrapper>
                 <S.MainPlaceGenreWrapper>
                   <S.TextStyle>공연 장르</S.TextStyle>
                   <Select
                     placeholder="Please select"
                     onChange={handleChange}
-                    style={{ width: "100%" }}
+                    style={{ width: "30%", minWidth: "200px" }}
                     options={options}
                   />
-                  <Input01 type="text" readOnly={true} value={genre} />
-                  <S.ErrorMsg>{formState.errors.genre?.message}</S.ErrorMsg>
+                  <S.ErrorMsg>{formState.errors.category?.message}</S.ErrorMsg>
                 </S.MainPlaceGenreWrapper>
               </S.PlaceGenreWrapper>
             </S.ArtistPlaceWrapper>
@@ -104,7 +103,7 @@ IArtistSignupPageWriteUI) => {
                   placeholder="소개글을 적어주세요"
                   register={register("description")}
                 />
-                <S.ErrorMsg>{formState.errors.remarks?.message}</S.ErrorMsg>
+                <S.ErrorMsg>{formState.errors.description?.message}</S.ErrorMsg>
               </S.RemarksInputWrapper>
               <S.RemarksInputWrapper>
                 <S.TextStyle>SNS링크 또는 유튜브 URL</S.TextStyle>
@@ -118,7 +117,7 @@ IArtistSignupPageWriteUI) => {
           </S.ContentsTopWrapper>
           <S.ContentsBottomWrapper>
             <S.AddTeamWrapper>
-              <S.TeamBtn type="button" onClick={onClickTeam}>
+              {/* <S.TeamBtn type="button" onClick={onClickTeam}>
                 팀이신가요?
               </S.TeamBtn>
               {isTeam
@@ -139,7 +138,7 @@ IArtistSignupPageWriteUI) => {
                       </>
                     );
                   })
-                : ""}
+                : ""} */}
             </S.AddTeamWrapper>
             <S.SubmitBtn>{isEdit ? "수정하기" : "등록하기"}</S.SubmitBtn>
           </S.ContentsBottomWrapper>

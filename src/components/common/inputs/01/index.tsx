@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { ChangeEvent } from "react";
+import { ChangeEvent, CSSProperties } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 import { stylePrimaryColor } from "../../../../commons/styles/globalStyles";
 
@@ -10,6 +10,7 @@ interface IProps {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   readOnly?: boolean;
   value?: string;
+  style?: CSSProperties;
 }
 
 const LoginInputStyle = styled.input`
@@ -19,15 +20,17 @@ const LoginInputStyle = styled.input`
   border-radius: 10px;
   padding: 20px;
   border: 1px solid #ddd;
+  outline: none;
+  transition: all 0.1s ease-in-out;
   :focus {
-    outline: 1px solid ${stylePrimaryColor};
-    border: none;
+    border: 1px solid ${stylePrimaryColor};
   }
 `;
 
 export default function Input01(props: IProps) {
   return (
     <LoginInputStyle
+      style={props.style}
       placeholder={props.placeholder}
       type={props.type}
       {...props.register}

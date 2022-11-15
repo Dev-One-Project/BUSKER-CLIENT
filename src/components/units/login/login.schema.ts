@@ -3,7 +3,7 @@ import * as yup from "yup";
 export const LoginYup = yup.object({
   email: yup
     .string()
-    .email("이메일에는 @가 필수입니다")
+    .email("이메일 형식에 맞춰주세요")
     .required("이메일을 적어주세요"),
   password: yup
     .string()

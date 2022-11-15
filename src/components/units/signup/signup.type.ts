@@ -11,5 +11,4 @@ export interface ISignupPageWriteUI {
 export interface IFormData {
   email: string;
   password: string;
-  passwordConfirm: string;
 }

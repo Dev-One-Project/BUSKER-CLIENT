@@ -1,5 +1,8 @@
 import styled from "@emotion/styled";
-import { stylePrimaryColor } from "../../../commons/styles/globalStyles";
+import {
+  breakPoints,
+  stylePrimaryColor,
+} from "../../../commons/styles/globalStyles";
 
 export const Reset = styled.button`
   width: 100%;
@@ -10,7 +13,6 @@ export const Reset = styled.button`
   background: none;
   border: 1px solid ${stylePrimaryColor};
   border-radius: 1rem;
-  height: 3rem;
   cursor: pointer;
   height: 50px;
   :hover {
@@ -34,7 +36,6 @@ export const LogoStyle = styled.div`
 
 export const BtnWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
   width: 100%;
 `;
 
@@ -42,6 +43,9 @@ export const PasswordChangeWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 40%;
+  @media ${breakPoints.mobile} {
+    width: 100%;
+  }
 `;
 
 export const InputBtnWrapper = styled.div`

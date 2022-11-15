@@ -16,7 +16,7 @@ export const Header = styled.div`
 export const OptionBox = styled.div`
   width: 100%;
   height: 100px;
-  background-color: antiquewhite;
+  background-color: ${stylePrimaryColor};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,9 +35,7 @@ export const OptionBox = styled.div`
 
 export const LocationOptionBox = styled.div``;
 
-export const GenreOptionBox = styled.div`
-  background-color: blue;
-`;
+export const GenreOptionBox = styled.div``;
 
 export const ListBox = styled.ul`
   list-style: none;

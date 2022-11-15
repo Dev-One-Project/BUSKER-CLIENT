@@ -1,7 +1,8 @@
+import { uniqueId } from "lodash";
 import { atom } from "recoil";
 
 export const userPositionState = atom({
-  key: "userPositionState",
+  key: `userPositionState${uniqueId()}`,
   default: {
     lat: "",
     lng: "",
@@ -9,11 +10,21 @@ export const userPositionState = atom({
 });
 
 export const deviceState = atom({
-  key: "deviceState",
+  key: `deviceState${uniqueId()}`,
   default: false,
 });
 
 export const accessTokenState = atom({
-  key: "accessTokenState",
+  key: `accessTokenState${uniqueId()}`,
   default: "",
 });
+
+export const sidebarState = atom({
+  key: `sidebarState${uniqueId()}`,
+  default: false,
+});
+
+// export const districtDataState = atom({
+//   key: `districtListState${uniqueId()}`,
+//   default: {},
+// });

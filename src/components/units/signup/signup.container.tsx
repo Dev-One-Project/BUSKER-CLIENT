@@ -20,7 +20,6 @@ const SignupPageWrite = () => {
   >(CREATE_USER);
   const { register, handleSubmit, formState } = useForm<IFormData>({
     resolver: yupResolver(SignupYup),
-    mode: "onChange",
   });
 
   const onClickMoveBack = () => {
@@ -28,12 +27,18 @@ const SignupPageWrite = () => {
   };
 
   const onClickSignup = async (data: IFormData) => {
-    await createUser({
-      variables: {
-        createUserInput: data,
-      },
-    });
-    void router.push("/login");
+    try {
+      await createUser({
+        variables: {
+          createUserInput: data,
+        },
+      });
+      await router.push("/login");
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(error);
+      }
+    }
   };
 
   return (

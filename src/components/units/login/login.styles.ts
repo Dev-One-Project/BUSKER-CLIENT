@@ -66,6 +66,9 @@ export const SocialLoginGoogleStyled = styled.div`
   :hover {
     background-color: #ddd;
   }
+  @media ${breakPoints.mobile} {
+    width: 250px;
+  }
 `;
 
 export const LoginBottomWrapper = styled.div`
@@ -79,6 +82,9 @@ export const LoginInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
+  @media ${breakPoints.mobile} {
+    width: 250px;
+  }
 `;
 
 export const LoginMainWrapper = styled.form`

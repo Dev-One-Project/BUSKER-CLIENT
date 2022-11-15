@@ -1,4 +1,4 @@
-schema: https://5brock.online/graphql
+schema: https://chansweb.shop/graphql
 generates:
   ./src/commons/types/generated/types.ts:
     plugins:

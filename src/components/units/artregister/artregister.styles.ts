@@ -1,7 +1,10 @@
 import styled from "@emotion/styled";
 import { Modal } from "antd";
 import DaumPostcodeEmbed from "react-daum-postcode";
-import { stylePrimaryColor } from "../../../commons/styles/globalStyles";
+import {
+  breakPoints,
+  stylePrimaryColor,
+} from "../../../commons/styles/globalStyles";
 import "antd/dist/antd.css";
 
 export const MainWrapper = styled.form`
@@ -112,10 +115,16 @@ export const AddressSearchWrapper = styled.div`
   input {
     width: 30%;
   }
+  @media ${breakPoints.mobile} {
+    display: flex;
+    flex-direction: column;
+    input {
+      width: 100%;
+    }
+  }
 `;
 
 export const KakaoWrapper = styled.div`
-  display: flex;
   width: 100%;
   height: 300px;
 `;
@@ -140,6 +149,19 @@ export const DateWrapper = styled.div`
     width: 170px;
     padding: 10px 20px;
   }
+  .ant-picker {
+    @media ${breakPoints.mobile} {
+      width: 200px;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  @media ${breakPoints.mobile} {
+    width: 100%;
+    input {
+      width: 100%;
+    }
+  }
 `;
 export const DayWrapper = styled.div`
   display: flex;
@@ -147,6 +169,14 @@ export const DayWrapper = styled.div`
   width: 100%;
   font-size: 1.8rem;
   padding: 10px 0;
+  @media ${breakPoints.mobile} {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    input {
+      width: 100%;
+    }
+  }
 `;
 
 export const ErrorMsg = styled.div`
