@@ -172,6 +172,7 @@ const ArtistSignupPageWrite = ({ isEdit }: IArtistSignupPageWrite) => {
         },
       ],
     });
+    await router.push("/main/list");
   };
 
   const onClickMemberEdit = async () => {

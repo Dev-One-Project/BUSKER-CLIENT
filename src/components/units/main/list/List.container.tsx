@@ -156,8 +156,11 @@ const MainList = () => {
     }
   };
 
+  console.log("boardsData:", boardsData);
+  // console.log("지역 data:", districtData);
   return (
     <MainListUI
+      // loadDistricts={loadDistricts}
       onClickToMap={onClickToMap}
       onClickListItem={onClickListItem}
       handleChangeGenre={handleChangeGenre}

@@ -65,6 +65,9 @@ export const SocialLoginGoogleStyled = styled.a`
   :hover {
     background-color: #ddd;
   }
+  @media ${breakPoints.mobile} {
+    width: 250px;
+  }
 `;
 
 export const LoginBottomWrapper = styled.div`

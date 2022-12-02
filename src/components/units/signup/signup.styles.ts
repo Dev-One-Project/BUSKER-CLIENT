@@ -18,6 +18,9 @@ export const SignupTopWrapper = styled.div`
   border-bottom: 2px solid gray;
   margin-bottom: 2rem;
   padding: 2rem 0;
+  @media ${breakPoints.mobile} {
+    width: 250px;
+  }
 `;
 
 export const SignupInputWrapper = styled.div`

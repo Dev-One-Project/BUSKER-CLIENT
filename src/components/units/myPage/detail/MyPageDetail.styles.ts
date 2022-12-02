@@ -5,6 +5,11 @@ import {
   stylePrimaryColor,
 } from "../../../../commons/styles/globalStyles";
 
+export const buttonStyle = {
+  borderBottom: "none",
+  borderRadius: "0px",
+};
+
 export const Wrapper = styled.div`
   max-width: 700px;
   @media ${breakPoints.mobile} {
