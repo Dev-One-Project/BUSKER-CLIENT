@@ -1,13 +1,8 @@
 import * as S from "../src/commons/styles/home";
-import "aos/dist/aos.css";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { deviceState, userPositionState } from "../src/commons/store";
-import Head from "next/script";
-import { useQuery } from "@apollo/client";
-import { IQuery } from "../src/commons/types/generated/types";
-import { FETCH_USER } from "../src/components/units/myPage/detail/MyPageDetail.queries";
 
 export default function Home() {
   const router = useRouter();
@@ -30,9 +25,6 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-      </Head>
       <S.Wrapper>
         <S.VideoBox>
           <S.Video
@@ -43,7 +35,7 @@ export default function Home() {
             preload="auto"
             playsInline
           ></S.Video>
-          <S.MainIntro data-aos="fade-up" data-aos-duration="3000">
+          <S.MainIntro>
             공허한 길거리에
             <br />
             다채로운 컨텐츠가
@@ -53,20 +45,20 @@ export default function Home() {
         </S.VideoBox>
         <S.ContentBox>
           <S.Content>
-            <div data-aos="fade-right" data-aos-duration="1000">
+            <div>
               <S.Title>내가 좋아하는 버스커와</S.Title>
               <S.Intro>
                 내가 좋아하는 버스커와 연결고리를 만들어 보실래요?
                 <br /> 주위의 라이브 공연을 찾아 연결해보세요.
               </S.Intro>
             </div>
-            <S.ImageBoxes data-aos="fade-left" data-aos-duration="1000">
+            <S.ImageBoxes>
               <S.Image src="/landing1.jpeg" />
             </S.ImageBoxes>
           </S.Content>
           {typeof window !== "undefined" && window.outerWidth < 920 ? (
             <S.Content>
-              <div data-aos="fade-right" data-aos-duration="1000">
+              <div>
                 <S.Title
                   style={{
                     display: "block",
@@ -81,16 +73,16 @@ export default function Home() {
                   주변에 있는 버스커들의 특별한 컨텐츠를 즐겨보세요
                 </S.Intro>
               </div>
-              <S.ImageBoxes data-aos="fade-left" data-aos-duration="1000">
+              <S.ImageBoxes>
                 <S.Image src="/landing2.jpeg" />
               </S.ImageBoxes>
             </S.Content>
           ) : (
             <S.Content>
-              <S.ImageBoxes data-aos="fade-right" data-aos-duration="1000">
+              <S.ImageBoxes>
                 <S.Image src="/landing2.jpeg" />
               </S.ImageBoxes>
-              <div data-aos="fade-left" data-aos-duration="1000">
+              <div>
                 <S.Title
                   style={{
                     display: "block",
