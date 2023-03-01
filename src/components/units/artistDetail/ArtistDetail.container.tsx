@@ -1,7 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
-import { useState } from "react";
 import useAuth from "../../../commons/libraries/useAuth";
 import {
   IMutation,
@@ -86,7 +85,7 @@ const ArtistDetail = ({ artistId }: IArtistProps) => {
   };
 
   const onClickMoveToEdit = () => {
-    void router.push(`/artistdetail/${router.query.id}/edit`);
+    void router.push(`/artistdetail/${String(router.query.id)}/edit`);
   };
 
   const onClickGoBack = () => {

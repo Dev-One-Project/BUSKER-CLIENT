@@ -29,7 +29,9 @@ const ArtDetailUI = (props: IArtDetailProps) => {
         <S.ContentBox>
           <S.ArtistInfoBox>
             <ImageBox
-              src={`https://storage.googleapis.com/busker-storage/${props.data?.fetchBoard.artist.artistImageURL}`}
+              src={`https://storage.googleapis.com/busker-storage/${String(
+                props.data?.fetchBoard.artist.artistImageURL
+              )}`}
               width="75px"
               height="75px"
             ></ImageBox>

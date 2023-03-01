@@ -1,9 +1,8 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import styled from "@emotion/styled";
 import { Modal } from "antd";
-import AOS from "aos";
 import { useRouter } from "next/router";
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 import { useRecoilState } from "recoil";
 import { sidebarState } from "../../../commons/store";
 import {
@@ -30,9 +29,6 @@ const Layout = ({ children }: ILayoutProps) => {
   const { data } = useQuery<Pick<IQuery, "fetchUser">>(FETCH_USER);
   const [isOpen, setIsOpen] = useRecoilState(sidebarState);
   const [logout] = useMutation<Pick<IMutation, "logout">>(LOGOUT);
-  useEffect(() => {
-    AOS.init();
-  }, []);
 
   const onClickMove = (path: string) => async () => {
     await router.push(path);
@@ -88,18 +84,6 @@ const Layout = ({ children }: ILayoutProps) => {
 export default Layout;
 
 export const HomeWrapper = styled.div`
-  @media ${breakPoints.desktop} {
-    /* background-color: green; */
-    max-width: 1440px;
-  }
-  @media ${breakPoints.tablet} {
-    /* background-color: blue; */
-    /* max-width: 991px; */
-  }
-  @media ${breakPoints.mobile} {
-    /* background-color: red; */
-    /* min-width: 250px; */
-  }
   width: 100%;
   margin: 0 auto;
   position: relative;

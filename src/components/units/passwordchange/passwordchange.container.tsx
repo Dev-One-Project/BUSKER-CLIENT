@@ -38,10 +38,7 @@ const PasswordChangePageWrite = () => {
         },
       });
       await router.push("/login");
-    } catch (error) {
-      if (error instanceof Error) {
-      }
-    }
+    } catch (error) {}
   };
 
   return (

@@ -45,7 +45,9 @@ const ArtistDetailUI = (props: IArtistDetailProps) => {
           <ImageBox
             width="150px"
             height="150px"
-            src={`https://storage.googleapis.com/busker-storage/${props.data?.fetchArtistWithoutAuth.artistImageURL}`}
+            src={`https://storage.googleapis.com/busker-storage/${String(
+              props.data?.fetchArtistWithoutAuth.artistImageURL
+            )}`}
           />
         </S.SummaryInfo>
         <S.TypingIntro>

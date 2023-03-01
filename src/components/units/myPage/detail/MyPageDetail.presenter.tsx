@@ -17,8 +17,10 @@ const MyPageDetailUI = (props: IMyPageProps) => {
               width="72px"
               height="72px"
               src={
-                props.userImageURL ||
-                `https://storage.googleapis.com/busker-storage/${props.data?.fetchUser.userImageURL}`
+                props.userImageURL ??
+                `https://storage.googleapis.com/busker-storage/${String(
+                  props.data?.fetchUser.userImageURL
+                )}`
               }
             />
             <div
@@ -98,8 +100,10 @@ const MyPageDetailUI = (props: IMyPageProps) => {
                   width="72px"
                   height="72px"
                   src={
-                    props.userImageURL ||
-                    `https://storage.googleapis.com/busker-storage/${props.data?.fetchUser.userImageURL}`
+                    props.userImageURL ??
+                    `https://storage.googleapis.com/busker-storage/${String(
+                      props.data?.fetchUser.userImageURL
+                    )}`
                   }
                 />
                 <Button01 onClick={props.onClickEditProfileImage}>

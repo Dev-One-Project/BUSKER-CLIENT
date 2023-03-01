@@ -5,7 +5,6 @@ import ApolloSetting from "../src/commons/apollo";
 import { globalStyles } from "../src/commons/styles/globalStyles";
 import Layout from "../src/components/common/layout";
 import Script from "next/script";
-
 import "antd/dist/antd.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -22,8 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
               content="width=device-width, initial-scale=1"
             ></meta>
             <Script
-              type="text/javascript"
-              src="//dapi.kakao.com/v2/maps/sdk.js?appkey=742b7bcfe05cf57b5cb459032650c7af&libraries=services,clusterer&autoload=false"
+              src="//dapi.kakao.com/v2/maps/sdk.js?appkey=edfba38ac62a236b1b1c5471e6851110&libraries=services,clusterer&autoload=false"
               strategy="beforeInteractive"
             />
             <Component {...pageProps} />

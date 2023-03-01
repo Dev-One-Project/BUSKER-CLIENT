@@ -114,8 +114,8 @@ const MainList = () => {
             </span>
           </div>
         ),
-        onOk: () => {
-          router.push("/artistsignup");
+        onOk: async () => {
+          await router.push("/artistsignup");
         },
       });
     } else {
@@ -150,10 +150,7 @@ const MainList = () => {
           };
         },
       });
-    } catch (error) {
-      if (error instanceof Error) {
-      }
-    }
+    } catch (error) {}
   };
 
   console.log("boardsData:", boardsData);

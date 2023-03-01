@@ -19,15 +19,11 @@ import {
 import {
   CREATE_BOARDS,
   FETCH_BOARD,
-  FETCH_BOARDS,
   UPDATE_BOARD,
   UPLOAD_FILE,
 } from "./ArtRegister.Quries";
 import { useRouter } from "next/router";
-import {
-  FETCH_BOARDS_BY_SEARCH,
-  FETCH_CATEGORIES,
-} from "../main/list/List.queries";
+import { FETCH_CATEGORIES } from "../main/list/List.queries";
 
 interface IArtRegisterPageWriteProps {
   isEdit?: boolean;
@@ -175,7 +171,7 @@ const ArtRegisterPageWrite = ({ isEdit }: IArtRegisterPageWriteProps) => {
         },
       ],
     });
-    router.push(`/main/list/${String(result.data?.updateBoard.id)}`);
+    await router.push(`/main/list/${String(result.data?.updateBoard.id)}`);
   };
 
   const onClickRegister = async (data: IFormData) => {
@@ -205,10 +201,7 @@ const ArtRegisterPageWrite = ({ isEdit }: IArtRegisterPageWriteProps) => {
       });
 
       await router.push(`/main/list/${String(result.data?.createBoards.id)}`);
-    } catch (error) {
-      if (error instanceof Error) {
-      }
-    }
+    } catch (error) {}
   };
 
   return (

@@ -11,7 +11,7 @@ interface IImageBoxProps {
 const ImageBox = (props: IImageBoxProps) => {
   return (
     <StyledImageBox style={{ width: props.width, height: props.height }}>
-      <StyledImage onClick={props.onClick} src={props.src || "/avatar.png"} />
+      <StyledImage onClick={props.onClick} src={props.src ?? "/avatar.png"} />
     </StyledImageBox>
   );
 };

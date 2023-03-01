@@ -15,11 +15,9 @@
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@hookform/resolvers": "^2.9.8",
-    "@types/aos": "^3.0.4",
     "@types/kakaomaps": "^1.1.2",
     "@types/react-slick": "^0.23.10",
     "antd": "^4.23.1",
-    "aos": "^2.3.4",
     "apollo-upload-client": "^17.0.0",
     "axios": "^0.27.2",
     "framer-motion": "6.2.4",
@@ -56,8 +54,6 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.31.8",
     "prettier": "2.7.1",
-    "sweetalert2": "^11.6.5",
-    "sweetalert2-react-content": "^5.0.7",
     "typescript": "*"
   },
   "resolutions": {
