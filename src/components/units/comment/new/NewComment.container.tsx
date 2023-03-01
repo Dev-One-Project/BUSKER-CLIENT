@@ -19,7 +19,7 @@ const NewComment = () => {
   const onClickCreateComment = async () => {
     if (!comment) return;
     try {
-      const result = await createComment({
+      await createComment({
         variables: {
           createCommentInput: {
             boardId: String(router.query.id),

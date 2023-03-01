@@ -10,7 +10,6 @@ import {
   IQuery,
   IQueryFetchBoardArgs,
 } from "../../../commons/types/generated/types";
-import { FETCH_BOARDS_BY_SEARCH } from "../main/list/List.queries";
 import ArtDetailUI from "./ArtDetail.presenter";
 import { DELETE_BOARD, FETCH_ARTIST, FETCH_BOARD } from "./ArtDetail.queries";
 

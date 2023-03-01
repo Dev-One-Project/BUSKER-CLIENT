@@ -6,9 +6,6 @@ import { useRouter } from "next/router";
 import { IKakaoMapProps } from "../../../commons/map/Map.types";
 import styled from "@emotion/styled";
 
-// 모바일 범위 0.008
-// 데탑 범위 0.005 -> 지도 밖 마커 표시 기능 넣으면 0.001 까지 가능..!
-
 const KakaoMap = ({
   position,
   address,
@@ -17,8 +14,6 @@ const KakaoMap = ({
   data,
 }: IKakaoMapProps) => {
   const router = useRouter();
-
-  // console.log("주변 버스킹 데이터:", data);
 
   const [isOpen, setIsOpen] = useState<boolean[]>([]);
   const [center, setCenter] = useState({
@@ -66,7 +61,6 @@ const KakaoMap = ({
       style={{
         width: "100%",
         height: "100%",
-        margin: "0 auto",
       }}
       level={typeof window !== "undefined" && window.outerWidth > 1000 ? 4 : 5}
       zoomable={false}

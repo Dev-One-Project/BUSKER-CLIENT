@@ -41,8 +41,8 @@ const MemberFetchWrite = (props: IMemberFetchWrite) => {
     setIsOpen(false);
   };
 
-  const onClickDelete = () => {
-    deleteMember({
+  const onClickDelete = async () => {
+    await deleteMember({
       variables: {
         memberId: saveId,
       },
