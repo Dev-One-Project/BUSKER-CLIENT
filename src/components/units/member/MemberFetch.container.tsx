@@ -5,7 +5,7 @@ import {
   IMutation,
   IMutationDeleteMemberArgs,
 } from "../../../commons/types/generated/types";
-import { FETCH_MEMBERS } from "../artistsignup/ArtistSignup.Quries";
+import { FETCH_MEMBERS } from "../artistsignup/artistSignup.queries";
 
 import MemberFetchWriteUI from "./MemberFetch.presenter";
 import { DELETE_MEMBER } from "./MemberFetch.quries";

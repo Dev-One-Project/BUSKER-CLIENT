@@ -4,7 +4,7 @@ import { userPositionState } from "../../../commons/store";
 import Input01 from "../../common/inputs/01";
 import KakaoMap from "../../common/kakaoMap";
 import * as S from "./artregister.styles";
-import { IArtRegisterPageWriteUI } from "./artregister.types";
+import { IArtRegisterPageWriteUI } from "./artRegister.types";
 
 const ArtRegisterPageWriteUI = ({
   onClickAddressOpen,
@@ -177,7 +177,6 @@ const ArtRegisterPageWriteUI = ({
                 register={register("end_time")}
               />
             </S.DayWrapper>
-
             <S.ErrorMsg>{formState.errors.time?.message}</S.ErrorMsg>
           </S.DateWrapper>
           <S.AddressWrapper>
