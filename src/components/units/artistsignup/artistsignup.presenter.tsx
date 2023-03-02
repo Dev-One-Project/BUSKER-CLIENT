@@ -53,7 +53,6 @@ const ArtistSignupPageWriteUI = ({
             <S.ArtistPlaceWrapper>
               <S.ArtistProfileWrapper>
                 <S.Edit>{isEdit ? "아티스트 수정" : "아티스트 등록"} </S.Edit>
-
                 <S.ImgNameWrapper>
                   <img
                     src="/icon_profile.png"
@@ -131,7 +130,6 @@ const ArtistSignupPageWriteUI = ({
                     </>
                   )}
                 </S.ImgNameWrapper>
-
                 <S.TextStyle>아티스트 이름(팀명)</S.TextStyle>
                 <Input01 type="text" register={register("active_name")} />
                 <S.ErrorMsg>{formState.errors.active_name?.message}</S.ErrorMsg>

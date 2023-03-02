@@ -2,10 +2,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { SelectProps } from "antd";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import ArtRegisterPageWriteUI from "./artregister.presenter";
-import { ArtRegisterYup } from "./artregister.schema";
 import type { DatePickerProps, RangePickerProps } from "antd/es/date-picker";
-import { IFormData } from "./artregister.types";
+import { IFormData } from "./artRegister.types";
 import { Address } from "react-daum-postcode";
 import { useMutation, useQuery } from "@apollo/client";
 import {
@@ -21,9 +19,11 @@ import {
   FETCH_BOARD,
   UPDATE_BOARD,
   UPLOAD_FILE,
-} from "./ArtRegister.Quries";
+} from "./artRegister.queries";
 import { useRouter } from "next/router";
 import { FETCH_CATEGORIES } from "../main/list/List.queries";
+import { ArtRegisterYup } from "./artregister.schema";
+import ArtRegisterPageWriteUI from "./artregister.presenter";
 
 interface IArtRegisterPageWriteProps {
   isEdit?: boolean;
@@ -151,7 +151,7 @@ const ArtRegisterPageWrite = ({ isEdit }: IArtRegisterPageWriteProps) => {
         boardId: String(router.query.id),
         updateBoardInput: {
           contents: data.contents,
-          category: data.category,
+          categoryId: data.category,
           start_time: data.start_time,
           end_time: data.end_time,
           boardAddressInput: {
@@ -182,7 +182,7 @@ const ArtRegisterPageWrite = ({ isEdit }: IArtRegisterPageWriteProps) => {
         variables: {
           createBoardInput: {
             contents: data.contents,
-            category: data.category,
+            categoryId: data.category,
             start_time: data.start_time,
             end_time: data.end_time,
             boardAddressInput: {

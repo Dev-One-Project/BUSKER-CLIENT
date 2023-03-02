@@ -15,9 +15,10 @@ import {
   IQuery,
   IQueryFetchMembersArgs,
 } from "../../../commons/types/generated/types";
-import { FETCH_BOARDS } from "../artregister/ArtRegister.Quries";
+import { FETCH_BOARDS } from "../artregister/artRegister.queries";
 import { UPDATE_MEMBER } from "../member/MemberFetch.quries";
 import ArtistSignupPageWriteUI from "./artistsignup.presenter";
+
 import {
   CREATE_ARTIST,
   CREATE_MEMBER,
@@ -26,7 +27,7 @@ import {
   FETCH_MEMBERS,
   UPDATE_ARTIST,
   UPLOAD_FILE,
-} from "./ArtistSignup.Quries";
+} from "./artistSignup.queries";
 import { ArtistSignupYup } from "./ArtistSignup.Schema";
 import { IArtistSignupPageWrite, IFormData } from "./artistsignup.types";
 
