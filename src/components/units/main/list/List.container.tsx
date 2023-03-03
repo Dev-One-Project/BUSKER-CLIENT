@@ -4,9 +4,14 @@ import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
 import {
   IQuery,
+  IQueryFetchBoardsArgs,
   IQueryFetchBoardsBySearchArgs,
 } from "../../../../commons/types/generated/types";
-import { FETCH_BOARDS_BY_SEARCH } from "./List.queries";
+import {
+  FETCH_BOARDS,
+  FETCH_BOARDS_BY_SEARCH,
+  FETCH_CATEGORIES,
+} from "./List.queries";
 import DistrcitData from "./DistrictData";
 import { useState } from "react";
 import { FETCH_ARTIST } from "../../detail/ArtDetail.queries";
@@ -15,40 +20,32 @@ import { FETCH_USER } from "../../myPage/detail/MyPageDetail.queries";
 const MainList = () => {
   const router = useRouter();
   const locationOptions = [...DistrcitData];
+  const { data: boardsData } = useQuery<
+    Pick<IQuery, "fetchBoards">,
+    IQueryFetchBoardsArgs
+  >(FETCH_BOARDS, { variables: { page: 1 } });
   const {
-    data: boardsData,
+    data: boardsDataBySearch,
     refetch,
     fetchMore,
   } = useQuery<
     Pick<IQuery, "fetchBoardsBySearch">,
     IQueryFetchBoardsBySearchArgs
-  >(FETCH_BOARDS_BY_SEARCH);
+  >(FETCH_BOARDS_BY_SEARCH, {
+    variables: { time: "2023-03-03T05:03:16.024Z" },
+  });
 
   const { data: isArtist } =
     useQuery<Pick<IQuery, "fetchArtist">>(FETCH_ARTIST);
   const { data: isUser } = useQuery<Pick<IQuery, "fetchUser">>(FETCH_USER);
-  const genreOptions: SelectProps["options"] = [
-    {
-      value: "c1aaac2c-cff4-4615-b0f0-e193ab5b23bc",
-      label: "노래",
-    },
-    {
-      value: "a27e5a6b-592f-4975-809c-7067abd17573",
-      label: "랩",
-    },
-    {
-      value: "d89e1e22-32f7-4c4b-9ed0-c0d85f9396cc",
-      label: "마술",
-    },
-    {
-      value: "6131d818-3140-4d4b-98ca-a84bd3e8398c",
-      label: "악기 연주",
-    },
-    {
-      value: "6c63004f-144a-4f51-9f64-c0e91ef878fd",
-      label: "춤",
-    },
-  ];
+  const { data: categoryData } =
+    useQuery<Pick<IQuery, "fetchCategories">>(FETCH_CATEGORIES);
+
+  const genreOptions: SelectProps["options"] =
+    categoryData?.fetchCategories.map((el) => ({
+      value: el.id,
+      label: el.name,
+    }));
 
   const [selectedGenre, setSelectedGenre] = useState<string[] | null>(null);
   const [selectedDistrict, setSelectedDistrict] = useState<string | null>(null);
@@ -133,7 +130,7 @@ const MainList = () => {
       await fetchMore({
         variables: {
           searchBoardInput: {
-            page: Math.ceil(boardsData.fetchBoardsBySearch.length / 12) + 1,
+            page: Math.ceil(boardsData.fetchBoards.length / 12) + 1,
             district: selectedDistrict,
             category: selectedGenre,
           },
@@ -153,8 +150,6 @@ const MainList = () => {
     } catch (error) {}
   };
 
-  console.log("boardsData:", boardsData);
-  // console.log("지역 data:", districtData);
   return (
     <MainListUI
       // loadDistricts={loadDistricts}
