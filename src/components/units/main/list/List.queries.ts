@@ -1,8 +1,40 @@
 import { gql } from "@apollo/client";
 
+export const FETCH_BOARDS = gql`
+  query fetchBoards($page: Float!) {
+    fetchBoards(page: $page) {
+      id
+      title
+      contents
+      start_time
+      end_time
+      isShowTime
+      createAt
+      updatedAt
+      category {
+        id
+        name
+      }
+      boardAddress {
+        id
+        address
+        lat
+        lng
+      }
+      boardImageURL {
+        id
+        url
+      }
+    }
+  }
+`;
+
 export const FETCH_BOARDS_BY_SEARCH = gql`
-  query fetchBoardsBySearch($searchBoardInput: SearchBoardInput) {
-    fetchBoardsBySearch(searchBoardInput: $searchBoardInput) {
+  query fetchBoardsBySearch(
+    $searchBoardInput: SearchBoardInput
+    $time: DateTime!
+  ) {
+    fetchBoardsBySearch(searchBoardInput: $searchBoardInput, time: $time) {
       id
       artist {
         id
@@ -22,10 +54,6 @@ export const FETCH_BOARDS_BY_SEARCH = gql`
       boardImageURL {
         id
         url
-      }
-      category {
-        id
-        name
       }
     }
   }
