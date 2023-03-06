@@ -20,20 +20,14 @@ import { FETCH_USER } from "../../myPage/detail/MyPageDetail.queries";
 const MainList = () => {
   const router = useRouter();
   const locationOptions = [...DistrcitData];
-  const { data: boardsData } = useQuery<
+  const { data: boardsData, fetchMore } = useQuery<
     Pick<IQuery, "fetchBoards">,
     IQueryFetchBoardsArgs
   >(FETCH_BOARDS, { variables: { page: 1 } });
-  const {
-    data: boardsDataBySearch,
-    refetch,
-    fetchMore,
-  } = useQuery<
+  const { data: boardsDataBySearch, refetch } = useQuery<
     Pick<IQuery, "fetchBoardsBySearch">,
     IQueryFetchBoardsBySearchArgs
-  >(FETCH_BOARDS_BY_SEARCH, {
-    variables: { time: "2023-03-03T05:03:16.024Z" },
-  });
+  >(FETCH_BOARDS_BY_SEARCH);
 
   const { data: isArtist } =
     useQuery<Pick<IQuery, "fetchArtist">>(FETCH_ARTIST);
@@ -129,20 +123,16 @@ const MainList = () => {
     try {
       await fetchMore({
         variables: {
-          searchBoardInput: {
-            page: Math.ceil(boardsData.fetchBoards.length / 12) + 1,
-            district: selectedDistrict,
-            category: selectedGenre,
-          },
+          page: Math.ceil(boardsData.fetchBoards.length / 12) + 1,
         },
         updateQuery: (prev, options) => {
-          if (options.fetchMoreResult.fetchBoardsBySearch === undefined) {
-            return { fetchBoardsBySearch: [...prev.fetchBoardsBySearch] };
+          if (options.fetchMoreResult.fetchBoards === undefined) {
+            return { fetchBoards: [...prev.fetchBoards] };
           }
           return {
-            fetchBoardsBySearch: [
-              ...prev.fetchBoardsBySearch,
-              ...options.fetchMoreResult.fetchBoardsBySearch,
+            fetchBoards: [
+              ...prev.fetchBoards,
+              ...options.fetchMoreResult.fetchBoards,
             ],
           };
         },

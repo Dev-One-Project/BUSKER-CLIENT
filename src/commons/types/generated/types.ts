@@ -350,13 +350,12 @@ export type IQueryFetchBoardArgs = {
 
 
 export type IQueryFetchBoardsArgs = {
-  page: Scalars['Float'];
+  page: Scalars['Int'];
 };
 
 
 export type IQueryFetchBoardsBySearchArgs = {
   searchBoardInput?: InputMaybe<ISearchBoardInput>;
-  time: Scalars['DateTime'];
 };
 
 
@@ -389,7 +388,6 @@ export type IQueryFetchMembersArgs = {
 
 export type IQueryFetchRecentBoardsArgs = {
   artistId: Scalars['String'];
-  time: Scalars['DateTime'];
 };
 
 export type ISearchBoardInput = {

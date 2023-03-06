@@ -105,15 +105,15 @@ export const MenuButton = styled.button`
     background: white;
   }
 
-  .bar:nth-child(1).isClicked {
+  .bar:nth-of-type(1).isClicked {
     transform: translateY(10px) rotate(45deg) scaleX(1.2);
   }
 
-  .bar:nth-child(2).isClicked {
+  .bar:nth-of-type(2).isClicked {
     transform: scale(0);
   }
 
-  .bar:nth-child(3).isClicked {
+  .bar:nth-of-type(3).isClicked {
     transform: translateY(-10px) rotate(-45deg) scaleX(1.2);
   }
 

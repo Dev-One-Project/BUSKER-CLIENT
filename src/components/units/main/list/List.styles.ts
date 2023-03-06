@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 import { stylePrimaryColor } from "../../../../commons/styles/globalStyles";
 
 export const Wrapper = styled.div`
-  max-width: 1440px;
   width: 100%;
   margin: 0 auto;
 `;
@@ -76,6 +75,7 @@ export const LocationOptionBox = styled.div``;
 export const GenreOptionBox = styled.div``;
 
 export const ListBox = styled.ul`
+  width: 100%;
   height: 100%;
   & > div {
     display: grid;

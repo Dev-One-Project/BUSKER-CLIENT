@@ -92,6 +92,45 @@ const KakaoMap = ({
               현재 위치
             </span>
           </CustomOverlayMap>
+          <MapMarker
+            position={{
+              lat: Number(position?.lat) - 0.0015,
+              lng: Number(position?.lng) - 0.0015,
+            }}
+          />
+          <CustomOverlayMap
+            position={{
+              lat: Number(position?.lat) - 0.0015,
+              lng: Number(position?.lng) - 0.0015,
+            }}
+            zIndex={99}
+          >
+            <div className="wrap">
+              <div className="info">
+                <div className="title">
+                  test name
+                  <div className="close" title="닫기">
+                    <CloseOutlined />
+                  </div>
+                </div>
+                <div className="body">
+                  <div className="img">
+                    <ImageBox width="75px" height="75px" src={``} />
+                  </div>
+                  <div className="desc">
+                    <div className="ellipsis category">
+                      # test category name
+                    </div>
+                    <div className="jibun ellipsis">시작: test startAt</div>
+                    <div className="jibun ellipsis">종료: test endAt</div>
+                    <span className="link" title="">
+                      버스킹 정보 보러가기
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CustomOverlayMap>
           {data?.fetchMapBoards.map((board, i) => {
             const position = {
               lat: board.boardAddress.lat,
@@ -109,49 +148,53 @@ const KakaoMap = ({
             return (
               <div key={i}>
                 <MapMarker position={position} onClick={onClickMarker(i)} />
-                {isOpen[i] && (
-                  <CustomOverlayMap position={position} zIndex={99}>
-                    <div className="wrap">
-                      <div className="info">
-                        <div className="title">
-                          {board.artist.active_name}
-                          <div
-                            className="close"
-                            onClick={onClickMarker(i)}
-                            title="닫기"
-                          >
-                            <CloseOutlined />
-                          </div>
-                        </div>
-                        <div className="body">
-                          <div className="img">
-                            <ImageBox
-                              width="75px"
-                              height="75px"
-                              src={`https://storage.googleapis.com/busker-storage/${board.artist.artistImageURL}`}
-                            />
-                          </div>
-                          <div className="desc">
-                            <div className="ellipsis category">
-                              # {board.category.name}
-                            </div>
-                            <div className="jibun ellipsis">
-                              시작: {startAt}
-                            </div>
-                            <div className="jibun ellipsis">종료: {endAt}</div>
-                            <span
-                              className="link"
-                              title=""
-                              onClick={onClickMoveToArtDetail(board.id)}
+                <>
+                  {isOpen[i] && (
+                    <CustomOverlayMap position={position} zIndex={99}>
+                      <div className="wrap">
+                        <div className="info">
+                          <div className="title">
+                            {board.artist.active_name}
+                            <div
+                              className="close"
+                              onClick={onClickMarker(i)}
+                              title="닫기"
                             >
-                              버스킹 정보 보러가기
-                            </span>
+                              <CloseOutlined />
+                            </div>
+                          </div>
+                          <div className="body">
+                            <div className="img">
+                              <ImageBox
+                                width="75px"
+                                height="75px"
+                                src={`https://storage.googleapis.com/busker-storage/${board.artist.artistImageURL}`}
+                              />
+                            </div>
+                            <div className="desc">
+                              <div className="ellipsis category">
+                                # {board.category.name}
+                              </div>
+                              <div className="jibun ellipsis">
+                                시작: {startAt}
+                              </div>
+                              <div className="jibun ellipsis">
+                                종료: {endAt}
+                              </div>
+                              <span
+                                className="link"
+                                title=""
+                                onClick={onClickMoveToArtDetail(board.id)}
+                              >
+                                버스킹 정보 보러가기
+                              </span>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </CustomOverlayMap>
-                )}
+                    </CustomOverlayMap>
+                  )}
+                </>
               </div>
             );
           })}
