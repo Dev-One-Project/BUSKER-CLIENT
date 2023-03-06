@@ -1,10 +1,8 @@
 FROM node:16-alpine
 
-WORKDIR /BUSKER
-COPY ./package.json .
-COPY ./yarn.lock .
-RUN yarn install
+WORKDIR /BUSKER/
+COPY ./package.json /BUSKER/
 
-COPY . .
+COPY . /BUSKER/
 RUN yarn build
 CMD yarn start

@@ -15,10 +15,10 @@ import {
 import Button01 from "../../src/components/common/buttons/01";
 import KakaoMap from "../../src/components/common/kakaoMap";
 import { FETCH_MAP_BOARDS } from "../../src/commons/map/Map.queries";
-import useAuth from "../../src/commons/libraries/useAuth";
+// import useAuth from "../../src/commons/libraries/useAuth";
 
 export default function KaKaoMapPage() {
-  useAuth();
+  // useAuth();
   const router = useRouter();
   const [userPosition, setUserPosition] = useRecoilState(userPositionState);
   const [isMobile, setIsMobile] = useRecoilState(deviceState);

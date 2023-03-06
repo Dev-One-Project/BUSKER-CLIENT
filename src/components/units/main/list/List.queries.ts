@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const FETCH_BOARDS = gql`
-  query fetchBoards($page: Float!) {
+  query fetchBoards($page: Int!) {
     fetchBoards(page: $page) {
       id
       title
@@ -30,11 +30,8 @@ export const FETCH_BOARDS = gql`
 `;
 
 export const FETCH_BOARDS_BY_SEARCH = gql`
-  query fetchBoardsBySearch(
-    $searchBoardInput: SearchBoardInput
-    $time: DateTime!
-  ) {
-    fetchBoardsBySearch(searchBoardInput: $searchBoardInput, time: $time) {
+  query fetchBoardsBySearch($searchBoardInput: SearchBoardInput) {
+    fetchBoardsBySearch(searchBoardInput: $searchBoardInput) {
       id
       artist {
         id
