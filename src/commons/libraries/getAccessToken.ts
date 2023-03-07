@@ -14,6 +14,7 @@ export const getAccessToken = async () => {
     // 빌드 에러 방지용 any
     const result: any = await graphQLClient.request(RESTORE_ACCESS_TOKEN);
     const newAccessToken = result.restoreAccessToken;
+    console.log(newAccessToken);
     return newAccessToken;
   } catch (error) {}
 };
