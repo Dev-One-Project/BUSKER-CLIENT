@@ -35,7 +35,7 @@ const ListItem = ({ board, onClickListItem }: IListItemProps) => {
                 color: "#9900ff",
               }}
             >
-              {board?.artist.active_name}
+              {board?.artist?.active_name}
             </span>
           </div>
           <ItemInfo>

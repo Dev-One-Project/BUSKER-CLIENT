@@ -1,7 +1,7 @@
 import MainListUI from "./List.presenter";
 import { Modal, SelectProps } from "antd";
 import { useRouter } from "next/router";
-import { useQuery } from "@apollo/client";
+import { useLazyQuery, useQuery } from "@apollo/client";
 import {
   IQuery,
   IQueryFetchBoardsArgs,
@@ -24,7 +24,7 @@ const MainList = () => {
     Pick<IQuery, "fetchBoards">,
     IQueryFetchBoardsArgs
   >(FETCH_BOARDS, { variables: { page: 1 } });
-  const { data: boardsDataBySearch, refetch } = useQuery<
+  const [fetchBoardsBySearch] = useLazyQuery<
     Pick<IQuery, "fetchBoardsBySearch">,
     IQueryFetchBoardsBySearchArgs
   >(FETCH_BOARDS_BY_SEARCH);
@@ -47,12 +47,16 @@ const MainList = () => {
   const handleChangeGenre = async (value: string[]) => {
     setSelectedGenre(value);
     if (value.length) {
-      await refetch({
-        searchBoardInput: { category: value, district: selectedDistrict },
+      await fetchBoardsBySearch({
+        variables: {
+          searchBoardInput: { category: value, district: selectedDistrict },
+        },
       });
     } else {
-      await refetch({
-        searchBoardInput: { page: 1, district: selectedDistrict },
+      await fetchBoardsBySearch({
+        variables: {
+          searchBoardInput: { page: 1, district: selectedDistrict },
+        },
       });
       setSelectedGenre(null);
     }
@@ -63,11 +67,15 @@ const MainList = () => {
     setSelectedDistrict(district);
 
     if (district === "undefined undefined") {
-      await refetch({ searchBoardInput: { page: 1, category: selectedGenre } });
+      await fetchBoardsBySearch({
+        variables: { searchBoardInput: { page: 1, category: selectedGenre } },
+      });
       setSelectedDistrict(null);
     } else {
-      await refetch({
-        searchBoardInput: { district, category: selectedGenre },
+      await fetchBoardsBySearch({
+        variables: {
+          searchBoardInput: { district, category: selectedGenre },
+        },
       });
     }
   };
@@ -120,6 +128,7 @@ const MainList = () => {
 
   const loadMore = async () => {
     if (boardsData === undefined) return;
+
     try {
       await fetchMore({
         variables: {
