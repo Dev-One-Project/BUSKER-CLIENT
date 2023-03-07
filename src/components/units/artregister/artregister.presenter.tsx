@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import { userPositionState } from "../../../commons/store";
 import Input01 from "../../common/inputs/01";
 import KakaoMap from "../../common/kakaoMap";
-import * as S from "./artregister.styles";
+import * as S from "./artRegister.styles";
 import { IArtRegisterPageWriteUI } from "./artRegister.types";
 
 const ArtRegisterPageWriteUI = ({

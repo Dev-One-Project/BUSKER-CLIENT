@@ -17,7 +17,7 @@ import {
 } from "../../../commons/types/generated/types";
 import { FETCH_BOARDS } from "../artregister/artRegister.queries";
 import { UPDATE_MEMBER } from "../member/MemberFetch.quries";
-import ArtistSignupPageWriteUI from "./artistsignup.presenter";
+import ArtistSignupPageWriteUI from "./artistSignup.presenter";
 
 import {
   CREATE_ARTIST,
