@@ -43,5 +43,5 @@ export interface IFormData {
   category: string;
   description: string;
   promotion_url: string;
-  artistImageURL: string;
+  artistImageURL?: string;
 }

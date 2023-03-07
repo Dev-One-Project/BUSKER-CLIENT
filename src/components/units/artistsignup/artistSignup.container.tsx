@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { SelectProps } from "antd";
+import { Modal, SelectProps } from "antd";
 import { useRouter } from "next/router";
 import { ChangeEvent, useEffect, useState } from "react";
 import { Address } from "react-daum-postcode";
@@ -36,7 +36,7 @@ const ArtistSignupPageWrite = ({ isEdit }: IArtistSignupPageWrite) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isTeam, setIsTeam] = useState(false);
   const [isMemberEdit, setIsMemberEdit] = useState(false);
-  const [address, setAddress] = useState("");
+  const [address] = useState("");
   const [imgUrl, setImgUrl] = useState("");
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
@@ -102,7 +102,6 @@ const ArtistSignupPageWrite = ({ isEdit }: IArtistSignupPageWrite) => {
 
   const onCompleteAddressSearch = (data: Address) => {
     setIsOpen((prev) => !prev);
-    setAddress(data.address);
     localStorage.setItem("address", JSON.stringify(data.address));
   };
 
@@ -128,26 +127,24 @@ const ArtistSignupPageWrite = ({ isEdit }: IArtistSignupPageWrite) => {
   }
 
   const handleChange = (value: string) => {
+    console.log(value);
     setValue("category", value);
   };
 
   const onClickSignup = async (data: IFormData) => {
+    console.log(data);
     try {
       const result = await createArtist({
-        variables: {
-          createArtistInput: data,
-        },
-        refetchQueries: [
-          {
-            query: FETCH_ARTIST,
-          },
-        ],
+        variables: { createArtistInput: { ...data } },
+      });
+      Modal.success({
+        content: "버스커로 등록되셨습니다. 당신의 버스킹 활동을 응원합니다.",
       });
       await router.push(
         `/artistdetail/${String(result.data?.createArtist.id)}`
       );
     } catch (error) {
-      alert(error);
+      if (error instanceof Error) Modal.error({ content: error.message });
     }
   };
 

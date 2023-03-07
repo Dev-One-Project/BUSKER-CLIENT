@@ -10,7 +10,9 @@ export const FETCH_BOARDS = gql`
       end_time
       isShowTime
       createAt
-      updatedAt
+      artist {
+        active_name
+      }
       category {
         id
         name
