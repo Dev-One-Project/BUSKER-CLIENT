@@ -3,7 +3,6 @@ import { SelectProps } from "antd";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import type { DatePickerProps, RangePickerProps } from "antd/es/date-picker";
-import { IFormData } from "./artRegister.types";
 import { Address } from "react-daum-postcode";
 import { useMutation, useQuery } from "@apollo/client";
 import {
@@ -14,17 +13,19 @@ import {
   IQuery,
   IQueryFetchBoardArgs,
 } from "../../../commons/types/generated/types";
+
+import { useRouter } from "next/router";
+import { FETCH_CATEGORIES } from "../main/list/List.queries";
+
+import ArtRegisterPageWriteUI from "./artregister.presenter";
+import { ArtRegisterYup } from "./artRegister.schema";
+import { IFormData } from "./artRegister.types";
 import {
   CREATE_BOARDS,
   FETCH_BOARD,
   UPDATE_BOARD,
   UPLOAD_FILE,
 } from "./artRegister.queries";
-import { useRouter } from "next/router";
-import { FETCH_CATEGORIES } from "../main/list/List.queries";
-
-import ArtRegisterPageWriteUI from "./artregister.presenter";
-import { ArtRegisterYup } from "./artRegister.schema";
 
 interface IArtRegisterPageWriteProps {
   isEdit?: boolean;

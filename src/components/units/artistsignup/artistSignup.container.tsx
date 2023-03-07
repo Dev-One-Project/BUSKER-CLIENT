@@ -15,7 +15,7 @@ import {
   IQuery,
   IQueryFetchMembersArgs,
 } from "../../../commons/types/generated/types";
-import { FETCH_BOARDS } from "../artregister/artRegister.queries";
+
 import { UPDATE_MEMBER } from "../member/MemberFetch.quries";
 import ArtistSignupPageWriteUI from "./artistSignup.presenter";
 
@@ -140,9 +140,6 @@ const ArtistSignupPageWrite = ({ isEdit }: IArtistSignupPageWrite) => {
         refetchQueries: [
           {
             query: FETCH_ARTIST,
-          },
-          {
-            query: FETCH_BOARDS,
           },
         ],
       });
