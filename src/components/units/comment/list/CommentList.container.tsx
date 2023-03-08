@@ -8,7 +8,7 @@ interface ICommentListProps {
 }
 
 const CommentList = ({ boardId }: ICommentListProps) => {
-  const { data } = useQuery<Pick<IQuery, "fetchComment">>(FETCH_COMMENT, {
+  const { data } = useQuery<Pick<IQuery, "fetchComments">>(FETCH_COMMENT, {
     variables: { boardId },
   });
 

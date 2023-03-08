@@ -1,17 +1,12 @@
 import MainListUI from "./List.presenter";
 import { Modal, SelectProps } from "antd";
 import { useRouter } from "next/router";
-import { useLazyQuery, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import {
   IQuery,
-  IQueryFetchBoardsArgs,
   IQueryFetchBoardsBySearchArgs,
 } from "../../../../commons/types/generated/types";
-import {
-  FETCH_BOARDS,
-  FETCH_BOARDS_BY_SEARCH,
-  FETCH_CATEGORIES,
-} from "./List.queries";
+import { FETCH_BOARDS_BY_SEARCH, FETCH_CATEGORIES } from "./List.queries";
 import DistrcitData from "./DistrictData";
 import { useState } from "react";
 import { FETCH_ARTIST } from "../../detail/ArtDetail.queries";
@@ -20,11 +15,12 @@ import { FETCH_USER } from "../../myPage/detail/MyPageDetail.queries";
 const MainList = () => {
   const router = useRouter();
   const locationOptions = [...DistrcitData];
-  const { data: boardsData, fetchMore } = useQuery<
-    Pick<IQuery, "fetchBoards">,
-    IQueryFetchBoardsArgs
-  >(FETCH_BOARDS, { variables: { page: 1 } });
-  const [fetchBoardsBySearch] = useLazyQuery<
+
+  const {
+    data: boardsData,
+    fetchMore,
+    refetch,
+  } = useQuery<
     Pick<IQuery, "fetchBoardsBySearch">,
     IQueryFetchBoardsBySearchArgs
   >(FETCH_BOARDS_BY_SEARCH);
@@ -47,16 +43,12 @@ const MainList = () => {
   const handleChangeGenre = async (value: string[]) => {
     setSelectedGenre(value);
     if (value.length) {
-      await fetchBoardsBySearch({
-        variables: {
-          searchBoardInput: { category: value, district: selectedDistrict },
-        },
+      await refetch({
+        searchBoardInput: { category: value, district: selectedDistrict },
       });
     } else {
-      await fetchBoardsBySearch({
-        variables: {
-          searchBoardInput: { page: 1, district: selectedDistrict },
-        },
+      await refetch({
+        searchBoardInput: { page: 1, district: selectedDistrict },
       });
       setSelectedGenre(null);
     }
@@ -67,15 +59,13 @@ const MainList = () => {
     setSelectedDistrict(district);
 
     if (district === "undefined undefined") {
-      await fetchBoardsBySearch({
-        variables: { searchBoardInput: { page: 1, category: selectedGenre } },
+      await refetch({
+        searchBoardInput: { page: 1, category: selectedGenre },
       });
       setSelectedDistrict(null);
     } else {
-      await fetchBoardsBySearch({
-        variables: {
-          searchBoardInput: { district, category: selectedGenre },
-        },
+      await refetch({
+        searchBoardInput: { district, category: selectedGenre },
       });
     }
   };
@@ -132,16 +122,16 @@ const MainList = () => {
     try {
       await fetchMore({
         variables: {
-          page: Math.ceil(boardsData.fetchBoards.length / 12) + 1,
+          page: Math.ceil(boardsData.fetchBoardsBySearch.length / 12) + 1,
         },
         updateQuery: (prev, options) => {
-          if (options.fetchMoreResult.fetchBoards === undefined) {
-            return { fetchBoards: [...prev.fetchBoards] };
+          if (options.fetchMoreResult.fetchBoardsBySearch === undefined) {
+            return { fetchBoardsBySearch: [...prev.fetchBoardsBySearch] };
           }
           return {
-            fetchBoards: [
-              ...prev.fetchBoards,
-              ...options.fetchMoreResult.fetchBoards,
+            fetchBoardsBySearch: [
+              ...prev.fetchBoardsBySearch,
+              ...options.fetchMoreResult.fetchBoardsBySearch,
             ],
           };
         },

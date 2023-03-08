@@ -8,7 +8,7 @@ export interface IMainListProps {
   handleChangeGenre:
     | ((value: any, option: DefaultOptionType | DefaultOptionType[]) => void)
     | undefined;
-  data?: Pick<IQuery, "fetchBoards">;
+  data?: Pick<IQuery, "fetchBoardsBySearch">;
   onClickListItem: (id: string) => () => void;
   onClickToMap: () => void;
   onClickMoveToArtRegister: () => void;

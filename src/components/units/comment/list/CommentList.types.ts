@@ -1,5 +1,5 @@
 import { IQuery } from "../../../../commons/types/generated/types";
 
 export interface ICommentListProps {
-  data?: Pick<IQuery, "fetchComment">;
+  data?: Pick<IQuery, "fetchComments">;
 }

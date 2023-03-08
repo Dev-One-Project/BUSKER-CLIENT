@@ -1,36 +1,5 @@
 import { gql } from "@apollo/client";
 
-export const FETCH_BOARDS = gql`
-  query fetchBoards($page: Int!) {
-    fetchBoards(page: $page) {
-      id
-      title
-      contents
-      start_time
-      end_time
-      isShowTime
-      createAt
-      artist {
-        active_name
-      }
-      category {
-        id
-        name
-      }
-      boardAddress {
-        id
-        address
-        lat
-        lng
-      }
-      boardImageURL {
-        id
-        url
-      }
-    }
-  }
-`;
-
 export const FETCH_BOARDS_BY_SEARCH = gql`
   query fetchBoardsBySearch($searchBoardInput: SearchBoardInput) {
     fetchBoardsBySearch(searchBoardInput: $searchBoardInput) {
