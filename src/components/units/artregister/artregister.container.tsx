@@ -13,10 +13,8 @@ import {
   IQuery,
   IQueryFetchBoardArgs,
 } from "../../../commons/types/generated/types";
-
 import { useRouter } from "next/router";
 import { FETCH_CATEGORIES } from "../main/list/List.queries";
-
 import ArtRegisterPageWriteUI from "./artregister.presenter";
 import { ArtRegisterYup } from "./artRegister.schema";
 import { IFormData } from "./artRegister.types";
