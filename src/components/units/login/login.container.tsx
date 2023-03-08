@@ -4,22 +4,27 @@ import { LoginYup } from "./login.schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { IFormData } from "./login.types";
 import { useRouter } from "next/router";
-import { useMutation } from "@apollo/client";
-import { LOGIN } from "./Login.Quries";
+import { useMutation, useQuery } from "@apollo/client";
+import { FETCH_ARTIST, LOGIN } from "./Login.Quries";
 import {
   IMutation,
   IMutationLoginArgs,
+  IQuery,
 } from "../../../commons/types/generated/types";
-import { useRecoilState } from "recoil";
-import { accessTokenState } from "../../../commons/store";
+import { useSetRecoilState } from "recoil";
+import { accessTokenState, userState } from "../../../commons/store";
+import { Modal } from "antd";
 
 const LoginPageWrite = () => {
   const router = useRouter();
-  const [, setAccessToken] = useRecoilState(accessTokenState);
+  const setAccessToken = useSetRecoilState(accessTokenState);
+  const setUserState = useSetRecoilState(userState);
 
   const [login] = useMutation<Pick<IMutation, "login">, IMutationLoginArgs>(
     LOGIN
   );
+
+  const { refetch } = useQuery<Pick<IQuery, "fetchArtist">>(FETCH_ARTIST);
 
   const { register, formState, handleSubmit } = useForm<IFormData>({
     resolver: yupResolver(LoginYup),
@@ -42,8 +47,11 @@ const LoginPageWrite = () => {
           password: data.password,
         },
       });
+      const isArtsit = await refetch();
       const accessToken = result.data?.login;
       setAccessToken(String(accessToken));
+      setUserState({ isLoggedIn: true, isArtist: isArtsit !== undefined });
+      Modal.success({ content: "로그인되었습니다." });
       await router.push("/main/list");
     } catch (error) {
       if (error instanceof Error) {
