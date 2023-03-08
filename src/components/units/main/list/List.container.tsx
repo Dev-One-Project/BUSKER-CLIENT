@@ -9,12 +9,15 @@ import {
 import { FETCH_BOARDS_BY_SEARCH, FETCH_CATEGORIES } from "./List.queries";
 import DistrcitData from "./DistrictData";
 import { useState } from "react";
-import { FETCH_ARTIST } from "../../detail/ArtDetail.queries";
-import { FETCH_USER } from "../../myPage/detail/MyPageDetail.queries";
+import { useRecoilValue } from "recoil";
+import { userState } from "../../../../commons/store";
 
 const MainList = () => {
   const router = useRouter();
   const locationOptions = [...DistrcitData];
+  const currUserState = useRecoilValue(userState);
+
+  console.log(currUserState);
 
   const {
     data: boardsData,
@@ -25,9 +28,6 @@ const MainList = () => {
     IQueryFetchBoardsBySearchArgs
   >(FETCH_BOARDS_BY_SEARCH);
 
-  const { data: isArtist } =
-    useQuery<Pick<IQuery, "fetchArtist">>(FETCH_ARTIST);
-  const { data: isUser } = useQuery<Pick<IQuery, "fetchUser">>(FETCH_USER);
   const { data: categoryData } =
     useQuery<Pick<IQuery, "fetchCategories">>(FETCH_CATEGORIES);
 
@@ -75,7 +75,7 @@ const MainList = () => {
   };
 
   const onClickToMap = async () => {
-    if (isUser) {
+    if (currUserState.isLoggedIn) {
       await router.push("/map");
     } else {
       Modal.warning({
@@ -88,9 +88,9 @@ const MainList = () => {
   };
 
   const onClickMoveToArtRegister = async () => {
-    if (isArtist) {
+    if (currUserState.isArtist) {
       await router.push("/artregister");
-    } else if (isUser) {
+    } else if (currUserState.isLoggedIn) {
       Modal.confirm({
         content: (
           <div style={{ width: "100%", textAlign: "center" }}>
@@ -111,8 +111,8 @@ const MainList = () => {
       Modal.warning({
         bodyStyle: { fontSize: "1.5rem" },
         content: "로그인 후에 이용하실 수 있습니다.",
+        onOk: async () => await router.push("/login"),
       });
-      await router.push("/login");
     }
   };
 
