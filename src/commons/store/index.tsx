@@ -24,7 +24,10 @@ export const sidebarState = atom({
   default: false,
 });
 
-// export const districtDataState = atom({
-//   key: `districtListState${uniqueId()}`,
-//   default: {},
-// });
+export const userState = atom({
+  key: `userState${uniqueId()}`,
+  default: {
+    isLoggedIn: false,
+    isArtist: false,
+  },
+});
