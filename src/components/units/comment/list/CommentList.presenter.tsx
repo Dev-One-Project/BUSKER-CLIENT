@@ -6,7 +6,7 @@ const CommentListUI = (props: ICommentListProps) => {
   return (
     <S.Wrapper>
       <ul style={{ paddingTop: "2rem" }}>
-        {props.data?.fetchComment.map((comment, i) => (
+        {props.data?.fetchComments.map((comment, i) => (
           <Comment data={comment} key={i} />
         ))}
       </ul>

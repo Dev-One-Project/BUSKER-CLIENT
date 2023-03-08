@@ -11,7 +11,8 @@ export const getAccessToken = async () => {
     const graphQLClient = new GraphQLClient("https://chansweb.shop/graphql", {
       credentials: "include",
     });
-    const result = await graphQLClient.request(RESTORE_ACCESS_TOKEN);
+    // 빌드 에러 방지용 any
+    const result: any = await graphQLClient.request(RESTORE_ACCESS_TOKEN);
     const newAccessToken = result.restoreAccessToken;
     return newAccessToken;
   } catch (error) {}

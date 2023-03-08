@@ -39,7 +39,7 @@ const MainListUI = (props: IMainListProps) => {
             loadMore={props.loadMore}
             hasMore={true || false}
           >
-            {props.data?.fetchBoards.map((board: IBoards) => (
+            {props.data?.fetchBoardsBySearch.map((board: IBoards) => (
               <ListItem
                 key={board.id}
                 board={board}
