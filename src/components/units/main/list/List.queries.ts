@@ -1,8 +1,16 @@
 import { gql } from "@apollo/client";
 
 export const FETCH_BOARDS_BY_SEARCH = gql`
-  query fetchBoardsBySearch($searchBoardInput: SearchBoardInput) {
-    fetchBoardsBySearch(searchBoardInput: $searchBoardInput) {
+  query fetchBoardsBySearch(
+    $page: Int
+    $categoryId: [String!]
+    $districtId: String
+  ) {
+    fetchBoardsBySearch(
+      page: $page
+      categoryId: $categoryId
+      districtId: $districtId
+    ) {
       id
       artist {
         id
@@ -12,6 +20,10 @@ export const FETCH_BOARDS_BY_SEARCH = gql`
       contents
       start_time
       end_time
+      category {
+        id
+        name
+      }
       isShowTime
       boardAddress {
         id

@@ -22,7 +22,7 @@ export type IArtist = {
   description: Scalars['String'];
   id: Scalars['String'];
   pick_user: Array<ILikeArtist>;
-  promotion_url: Scalars['String'];
+  promotion_url?: Maybe<Scalars['String']>;
 };
 
 export type IBoardAddress = {
@@ -53,7 +53,7 @@ export type IBoards = {
   artist: IArtist;
   boardAddress: IBoardAddress;
   boardImageURL: Array<IBoardImages>;
-  category: ICategory;
+  category?: Maybe<ICategory>;
   comments: Array<IComments>;
   contents: Scalars['String'];
   createAt: Scalars['DateTime'];
@@ -92,7 +92,7 @@ export type ICreateArtistInput = {
   artistImageURL?: InputMaybe<Scalars['String']>;
   category: Scalars['String'];
   description: Scalars['String'];
-  promotion_url: Scalars['String'];
+  promotion_url?: InputMaybe<Scalars['String']>;
 };
 
 export type ICreateBoardInput = {
@@ -320,7 +320,6 @@ export type IQuery = {
   fetchArtistCount: Scalars['Int'];
   fetchArtistWithoutAuth: IArtist;
   fetchBoard: IBoards;
-  fetchBoards: Array<IBoards>;
   fetchBoardsBySearch: Array<IBoards>;
   fetchByComment: IComments;
   fetchCategories: Array<ICategory>;
@@ -349,13 +348,10 @@ export type IQueryFetchBoardArgs = {
 };
 
 
-export type IQueryFetchBoardsArgs = {
-  page: Scalars['Int'];
-};
-
-
 export type IQueryFetchBoardsBySearchArgs = {
-  searchBoardInput?: InputMaybe<ISearchBoardInput>;
+  categoryId?: InputMaybe<Array<Scalars['String']>>;
+  districtId?: InputMaybe<Scalars['String']>;
+  page?: InputMaybe<Scalars['Int']>;
 };
 
 
@@ -388,12 +384,6 @@ export type IQueryFetchMembersArgs = {
 
 export type IQueryFetchRecentBoardsArgs = {
   artistId: Scalars['String'];
-};
-
-export type ISearchBoardInput = {
-  category?: InputMaybe<Array<Scalars['String']>>;
-  district?: InputMaybe<Scalars['String']>;
-  page?: InputMaybe<Scalars['Int']>;
 };
 
 export type IUpdateArtistInput = {
