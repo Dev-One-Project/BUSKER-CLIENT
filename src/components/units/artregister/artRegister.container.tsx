@@ -24,7 +24,7 @@ import { useRouter } from "next/router";
 import { FETCH_CATEGORIES } from "../main/list/List.queries";
 
 import { ArtRegisterYup } from "./artRegister.schema";
-import ArtRegisterPageWriteUI from "./artregister.presenter";
+import ArtRegisterPageWriteUI from "./artRegister.presenter";
 
 interface IArtRegisterPageWriteProps {
   isEdit?: boolean;
