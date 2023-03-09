@@ -1,5 +1,8 @@
 import styled from "@emotion/styled";
-import { stylePrimaryColor } from "../../../../commons/styles/globalStyles";
+import {
+  stylePrimaryColor,
+  breakPoints,
+} from "../../../../commons/styles/globalStyles";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -75,16 +78,22 @@ export const LocationOptionBox = styled.div``;
 export const GenreOptionBox = styled.div``;
 
 export const ListBox = styled.ul`
+  max-width: 1440px;
   width: 100%;
   height: 100%;
-  & > div {
+  margin: 0 auto;
+  padding: 0 5rem;
+  > div {
     display: grid;
     grid-auto-flow: row dense;
     grid-auto-rows: minmax(min-content, max-content);
-    gap: 2%;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    padding: 0 30px;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     padding-top: 2rem;
+  }
+
+  @media ${breakPoints.mobile} {
+    padding: 0 2rem;
   }
   list-style: none;
 `;

@@ -1,4 +1,4 @@
-import ArtRegisterPageWrite from "../../src/components/units/artregister/artregister.container";
+import ArtRegisterPageWrite from "../../src/components/units/artregister/artRegister.container";
 
 const ArtRegisterPage = () => {
   return <ArtRegisterPageWrite isEdit={false} />;

@@ -44,28 +44,32 @@ const MainList = () => {
     setSelectedGenre(value);
     if (value.length) {
       await refetch({
-        searchBoardInput: { category: value, district: selectedDistrict },
+        categoryId: value,
+        districtId: selectedDistrict,
       });
     } else {
       await refetch({
-        searchBoardInput: { page: 1, district: selectedDistrict },
+        page: 1,
+        categoryId: null,
+        districtId: selectedDistrict,
       });
       setSelectedGenre(null);
     }
   };
+
+  console.log(boardsData);
 
   const handleChangeLocation = async (value: string[]) => {
     const district = `${value?.[0]} ${value?.[1]}`;
     setSelectedDistrict(district);
 
     if (district === "undefined undefined") {
-      await refetch({
-        searchBoardInput: { page: 1, category: selectedGenre },
-      });
+      await refetch({ page: 1, categoryId: selectedGenre });
       setSelectedDistrict(null);
     } else {
       await refetch({
-        searchBoardInput: { district, category: selectedGenre },
+        districtId: district,
+        categoryId: selectedGenre,
       });
     }
   };
