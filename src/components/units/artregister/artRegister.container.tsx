@@ -16,10 +16,10 @@ import {
 
 import { useRouter } from "next/router";
 import { FETCH_CATEGORIES } from "../main/list/List.queries";
-
 import ArtRegisterPageWriteUI from "./artRegister.presenter";
 import { ArtRegisterYup } from "./artRegister.schema";
 import { IFormData } from "./artRegister.types";
+
 import {
   CREATE_BOARDS,
   FETCH_BOARD,
